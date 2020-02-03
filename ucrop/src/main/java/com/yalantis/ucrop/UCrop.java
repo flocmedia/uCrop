@@ -215,7 +215,7 @@ public class UCrop {
      * @param intent crop result intent
      */
     public static float getOutputImageScale(@NonNull Intent intent) {
-        return intent.getIntExtra(EXTRA_OUTPUT_IMAGE_SCALE, -1);
+        return intent.getFloatExtra(EXTRA_OUTPUT_IMAGE_SCALE, -1);
     }
 
     /**
@@ -224,7 +224,7 @@ public class UCrop {
      * @param intent crop result intent
      */
     public static float getOutputImageAngle(@NonNull Intent intent) {
-        return intent.getIntExtra(EXTRA_OUTPUT_IMAGE_ANGLE, -1);
+        return intent.getFloatExtra(EXTRA_OUTPUT_IMAGE_ANGLE, -1);
     }
 
     /**
