@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
+import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -613,8 +614,8 @@ public class UCropActivity extends AppCompatActivity {
         mGestureCropImageView.cropAndSaveImage(mCompressFormat, mCompressQuality, new BitmapCropCallback() {
             // NOTE(kleyow): Code deviating for editor purposes.
             @Override
-            public void onBitmapCropped(@NonNull Uri resultUri, int imageWidth, int imageHeight, float currentScale, float currentAngle) {
-                setResultUri(resultUri, mGestureCropImageView.getTargetAspectRatio(), imageWidth, imageHeight, currentScale, currentAngle);
+            public void onBitmapCropped(@NonNull Uri resultUri, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect) {
+                setResultUri(resultUri, mGestureCropImageView.getTargetAspectRatio(), imageWidth, imageHeight, currentScale, currentAngle, cropRect, currentImageRect);
                 finish();
             }
 
@@ -626,7 +627,7 @@ public class UCropActivity extends AppCompatActivity {
         });
     }
 
-    protected void setResultUri(Uri uri, float resultAspectRatio, int imageWidth, int imageHeight, float currentScale, float currentAngle) {
+    protected void setResultUri(Uri uri, float resultAspectRatio, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect) {
         // NOTE(kleyow): Code deviating for editor purposes.
         setResult(RESULT_OK, new Intent()
                 .putExtra(UCrop.EXTRA_OUTPUT_URI, uri)
@@ -635,6 +636,8 @@ public class UCropActivity extends AppCompatActivity {
                 .putExtra(UCrop.EXTRA_OUTPUT_IMAGE_HEIGHT, imageHeight)
                 .putExtra(UCrop.EXTRA_OUTPUT_IMAGE_SCALE, currentScale)
                 .putExtra(UCrop.EXTRA_OUTPUT_IMAGE_ANGLE, currentAngle)
+                .putExtra(UCrop.EXTRA_OUTPUT_CROP_RECT, new float[]{cropRect.top, cropRect.right, cropRect.bottom, cropRect.left})
+                .putExtra(UCrop.EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT, new float[]{currentImageRect.top, currentImageRect.right, currentImageRect.bottom, currentImageRect.left})
         );
     }
 

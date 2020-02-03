@@ -187,7 +187,9 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
                         mCroppedImageWidth,
                         mCroppedImageHeight,
                         mCurrentScale,
-                        mCurrentAngle);
+                        mCurrentAngle,
+                        mCropRect,
+                        mCurrentImageRect);
             } else {
                 mCropCallback.onCropFailure(t);
             }

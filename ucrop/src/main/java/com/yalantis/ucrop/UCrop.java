@@ -41,8 +41,10 @@ public class UCrop {
     public static final String EXTRA_OUTPUT_IMAGE_WIDTH = EXTRA_PREFIX + ".ImageWidth";
     public static final String EXTRA_OUTPUT_IMAGE_HEIGHT = EXTRA_PREFIX + ".ImageHeight";
     // NOTE(kleyow): Code deviating for editor purposes.
-    public static final String EXTRA_OUTPUT_IMAGE_SCALE = EXTRA_PREFIX + ".ImageHeight";
-    public static final String EXTRA_OUTPUT_IMAGE_ANGLE = EXTRA_PREFIX + ".ImageHeight";
+    public static final String EXTRA_OUTPUT_IMAGE_SCALE = EXTRA_PREFIX + ".ImageScale";
+    public static final String EXTRA_OUTPUT_IMAGE_ANGLE = EXTRA_PREFIX + ".ImageAngle";
+    public static final String EXTRA_OUTPUT_CROP_RECT = EXTRA_PREFIX + ".ImageRect";
+    public static final String EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT = EXTRA_PREFIX + ".ImageCurrentRect";
 
     public static final String EXTRA_ERROR = EXTRA_PREFIX + ".Error";
 
@@ -225,6 +227,24 @@ public class UCrop {
      */
     public static float getOutputImageAngle(@NonNull Intent intent) {
         return intent.getFloatExtra(EXTRA_OUTPUT_IMAGE_ANGLE, -1);
+    }
+
+    /**
+     * Retrieve the crop rect of the cropped image
+     *
+     * @param intent crop result intent
+     */
+    public static float[] getOutputCropRect(@NonNull Intent intent) {
+        return intent.getFloatArrayExtra(EXTRA_OUTPUT_CROP_RECT);
+    }
+
+    /**
+     * Retrieve the crop rect of the cropped image
+     *
+     * @param intent crop result intent
+     */
+    public static float[] getOutputCurrentImageCropRect(@NonNull Intent intent) {
+        return intent.getFloatArrayExtra(EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT);
     }
 
     /**
