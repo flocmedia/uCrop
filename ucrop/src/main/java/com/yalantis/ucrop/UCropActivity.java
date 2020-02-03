@@ -636,8 +636,8 @@ public class UCropActivity extends AppCompatActivity {
                 .putExtra(UCrop.EXTRA_OUTPUT_IMAGE_HEIGHT, imageHeight)
                 .putExtra(UCrop.EXTRA_OUTPUT_IMAGE_SCALE, currentScale)
                 .putExtra(UCrop.EXTRA_OUTPUT_IMAGE_ANGLE, currentAngle)
-                .putExtra(UCrop.EXTRA_OUTPUT_CROP_RECT, new float[]{cropRect.top, cropRect.right, cropRect.bottom, cropRect.left})
-                .putExtra(UCrop.EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT, new float[]{currentImageRect.top, currentImageRect.right, currentImageRect.bottom, currentImageRect.left})
+                .putExtra(UCrop.EXTRA_OUTPUT_CROP_RECT, new float[]{cropRect.left, cropRect.top, cropRect.right, cropRect.bottom})
+                .putExtra(UCrop.EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT, new float[]{currentImageRect.left, currentImageRect.top, currentImageRect.right, currentImageRect.bottom})
         );
     }
 
