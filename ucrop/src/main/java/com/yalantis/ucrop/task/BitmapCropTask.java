@@ -182,7 +182,12 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
     protected void onPostExecute(@Nullable Throwable t) {
         if (mCropCallback != null) {
             if (t == null) {
-                mCropCallback.onBitmapCropped(Uri.fromFile(new File(mImageOutputPath)), mCroppedImageWidth, mCroppedImageHeight);
+                mCropCallback.onBitmapCropped(
+                        Uri.fromFile(new File(mImageOutputPath)),
+                        mCroppedImageWidth,
+                        mCroppedImageHeight,
+                        mCurrentScale,
+                        mCurrentAngle);
             } else {
                 mCropCallback.onCropFailure(t);
             }

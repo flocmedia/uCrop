@@ -40,6 +40,10 @@ public class UCrop {
     public static final String EXTRA_OUTPUT_CROP_ASPECT_RATIO = EXTRA_PREFIX + ".CropAspectRatio";
     public static final String EXTRA_OUTPUT_IMAGE_WIDTH = EXTRA_PREFIX + ".ImageWidth";
     public static final String EXTRA_OUTPUT_IMAGE_HEIGHT = EXTRA_PREFIX + ".ImageHeight";
+    // NOTE(kleyow): Code deviating for editor purposes.
+    public static final String EXTRA_OUTPUT_IMAGE_SCALE = EXTRA_PREFIX + ".ImageHeight";
+    public static final String EXTRA_OUTPUT_IMAGE_ANGLE = EXTRA_PREFIX + ".ImageHeight";
+
     public static final String EXTRA_ERROR = EXTRA_PREFIX + ".Error";
 
     public static final String EXTRA_ASPECT_RATIO_X = EXTRA_PREFIX + ".AspectRatioX";
@@ -203,6 +207,24 @@ public class UCrop {
      */
     public static int getOutputImageHeight(@NonNull Intent intent) {
         return intent.getIntExtra(EXTRA_OUTPUT_IMAGE_HEIGHT, -1);
+    }
+
+    /**
+     * Retrieve the scale of the cropped image
+     *
+     * @param intent crop result intent
+     */
+    public static float getOutputImageScale(@NonNull Intent intent) {
+        return intent.getIntExtra(EXTRA_OUTPUT_IMAGE_SCALE, -1);
+    }
+
+    /**
+     * Retrieve the angle of the cropped image
+     *
+     * @param intent crop result intent
+     */
+    public static float getOutputImageAngle(@NonNull Intent intent) {
+        return intent.getIntExtra(EXTRA_OUTPUT_IMAGE_ANGLE, -1);
     }
 
     /**
