@@ -630,7 +630,7 @@ public class UCropActivity extends AppCompatActivity {
 
     protected void setResultUri(Uri uri, float resultAspectRatio, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect, Matrix mTempMatrix) {
         // NOTE(kleyow): Code deviating for editor purposes.
-        float[] mTempMatrixArray;
+        float[] mTempMatrixArray = new float[9];
         mTempMatrix.getValues(mTempMatrixArray);
         setResult(RESULT_OK, new Intent()
                 .putExtra(UCrop.EXTRA_OUTPUT_URI, uri)
