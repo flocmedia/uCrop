@@ -2,6 +2,7 @@ package com.yalantis.ucrop.task;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -50,8 +51,10 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
     private final BitmapCropCallback mCropCallback;
 
     private int mCroppedImageWidth, mCroppedImageHeight;
+    private Matrix mTempMatrix;
 
     public BitmapCropTask(@Nullable Bitmap viewBitmap, @NonNull ImageState imageState, @NonNull CropParameters cropParameters,
+                          @Nullable Matrix mTempMatrix,
                           @Nullable BitmapCropCallback cropCallback) {
 
         mViewBitmap = viewBitmap;
@@ -71,6 +74,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
         mExifInfo = cropParameters.getExifInfo();
 
         mCropCallback = cropCallback;
+        mTempMatrix = mTempMatrix;
     }
 
     @Override
@@ -189,7 +193,8 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
                         mCurrentScale,
                         mCurrentAngle,
                         mCropRect,
-                        mCurrentImageRect);
+                        mCurrentImageRect,
+                        mTempMatrix);
             } else {
                 mCropCallback.onCropFailure(t);
             }

@@ -45,6 +45,7 @@ public class UCrop {
     public static final String EXTRA_OUTPUT_IMAGE_ANGLE = EXTRA_PREFIX + ".ImageAngle";
     public static final String EXTRA_OUTPUT_CROP_RECT = EXTRA_PREFIX + ".ImageRect";
     public static final String EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT = EXTRA_PREFIX + ".ImageCurrentRect";
+    public static final String EXTRA_OUTPUT_MATRIX = EXTRA_PREFIX + ".ImageMatrix";
 
     public static final String EXTRA_ERROR = EXTRA_PREFIX + ".Error";
 

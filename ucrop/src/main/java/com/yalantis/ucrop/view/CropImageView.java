@@ -82,7 +82,8 @@ public class CropImageView extends TransformImageView {
                 compressFormat, compressQuality,
                 getImageInputPath(), getImageOutputPath(), getExifInfo());
 
-        new BitmapCropTask(getViewBitmap(), imageState, cropParameters, cropCallback).execute();
+        final Matrix transformMatrix = this.get
+        new BitmapCropTask(getViewBitmap(), imageState, cropParameters, mTempMatrix, cropCallback).execute();
     }
 
     /**

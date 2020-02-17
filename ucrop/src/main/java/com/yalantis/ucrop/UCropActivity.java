@@ -3,6 +3,7 @@ package com.yalantis.ucrop;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
@@ -627,8 +628,10 @@ public class UCropActivity extends AppCompatActivity {
         });
     }
 
-    protected void setResultUri(Uri uri, float resultAspectRatio, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect) {
+    protected void setResultUri(Uri uri, float resultAspectRatio, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect, Matrix mTempMatrix) {
         // NOTE(kleyow): Code deviating for editor purposes.
+        float[] mTempMatrixArray;
+        mTempMatrix.getValues(mTempMatrixArray);
         setResult(RESULT_OK, new Intent()
                 .putExtra(UCrop.EXTRA_OUTPUT_URI, uri)
                 .putExtra(UCrop.EXTRA_OUTPUT_CROP_ASPECT_RATIO, resultAspectRatio)
@@ -638,6 +641,7 @@ public class UCropActivity extends AppCompatActivity {
                 .putExtra(UCrop.EXTRA_OUTPUT_IMAGE_ANGLE, currentAngle)
                 .putExtra(UCrop.EXTRA_OUTPUT_CROP_RECT, new float[]{cropRect.left, cropRect.top, cropRect.right, cropRect.bottom})
                 .putExtra(UCrop.EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT, new float[]{currentImageRect.left, currentImageRect.top, currentImageRect.right, currentImageRect.bottom})
+                .putExtra(UCrop.EXTRA_OUTPUT_MATRIX, mTempMatrixArray)
         );
     }
 
