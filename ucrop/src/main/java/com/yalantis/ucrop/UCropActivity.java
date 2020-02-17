@@ -615,8 +615,8 @@ public class UCropActivity extends AppCompatActivity {
         mGestureCropImageView.cropAndSaveImage(mCompressFormat, mCompressQuality, new BitmapCropCallback() {
             // NOTE(kleyow): Code deviating for editor purposes.
             @Override
-            public void onBitmapCropped(@NonNull Uri resultUri, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect, Matrix mTempMatrix) {
-                setResultUri(resultUri, mGestureCropImageView.getTargetAspectRatio(), imageWidth, imageHeight, currentScale, currentAngle, cropRect, currentImageRect, mTempMatrix);
+            public void onBitmapCropped(@NonNull Uri resultUri, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect, int  cropOffsetX, int cropOffsetY) {
+                setResultUri(resultUri, mGestureCropImageView.getTargetAspectRatio(), imageWidth, imageHeight, currentScale, currentAngle, cropRect, currentImageRect, cropOffsetX, cropOffsetY);
                 finish();
             }
 
@@ -628,10 +628,8 @@ public class UCropActivity extends AppCompatActivity {
         });
     }
 
-    protected void setResultUri(Uri uri, float resultAspectRatio, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect, Matrix mTempMatrix) {
+    protected void setResultUri(Uri uri, float resultAspectRatio, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect, int  cropOffsetX, int cropOffsetY) {
         // NOTE(kleyow): Code deviating for editor purposes.
-        float[] mTempMatrixArray = new float[9];
-        mTempMatrix.getValues(mTempMatrixArray);
         setResult(RESULT_OK, new Intent()
                 .putExtra(UCrop.EXTRA_OUTPUT_URI, uri)
                 .putExtra(UCrop.EXTRA_OUTPUT_CROP_ASPECT_RATIO, resultAspectRatio)
@@ -641,7 +639,8 @@ public class UCropActivity extends AppCompatActivity {
                 .putExtra(UCrop.EXTRA_OUTPUT_IMAGE_ANGLE, currentAngle)
                 .putExtra(UCrop.EXTRA_OUTPUT_CROP_RECT, new float[]{cropRect.left, cropRect.top, cropRect.right, cropRect.bottom})
                 .putExtra(UCrop.EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT, new float[]{currentImageRect.left, currentImageRect.top, currentImageRect.right, currentImageRect.bottom})
-                .putExtra(UCrop.EXTRA_OUTPUT_MATRIX, mTempMatrixArray)
+                .putExtra(UCrop.EXTRA_OUTPUT_CROP_OFFSET_X, cropOffsetX)
+                .putExtra(UCrop.EXTRA_OUTPUT_CROP_OFFSET_Y, cropOffsetY)
         );
     }
 

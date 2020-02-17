@@ -45,7 +45,8 @@ public class UCrop {
     public static final String EXTRA_OUTPUT_IMAGE_ANGLE = EXTRA_PREFIX + ".ImageAngle";
     public static final String EXTRA_OUTPUT_CROP_RECT = EXTRA_PREFIX + ".ImageRect";
     public static final String EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT = EXTRA_PREFIX + ".ImageCurrentRect";
-    public static final String EXTRA_OUTPUT_MATRIX = EXTRA_PREFIX + ".ImageMatrix";
+    public static final String EXTRA_OUTPUT_CROP_OFFSET_X = ".ImageOffsetX";
+    public static final String EXTRA_OUTPUT_CROP_OFFSET_Y = ".ImageOffsetY";
 
     public static final String EXTRA_ERROR = EXTRA_PREFIX + ".Error";
 
@@ -248,14 +249,26 @@ public class UCrop {
         return intent.getFloatArrayExtra(EXTRA_OUTPUT_CURRENT_IMAGE_CROP_RECT);
     }
 
+
     /**
-     * Retrieve the matrix
+     * Retrieve the height of the cropped image
      *
      * @param intent crop result intent
      */
-    public static float[] getOutputMatrix(@NonNull Intent intent) {
-        return intent.getFloatArrayExtra(EXTRA_OUTPUT_MATRIX);
+    public static int getOutputOffsetX(@NonNull Intent intent) {
+        return intent.getIntExtra(EXTRA_OUTPUT_CROP_OFFSET_X, -1);
     }
+
+
+    /**
+     * Retrieve the height of the cropped image
+     *
+     * @param intent crop result intent
+     */
+    public static int getOutputOffsetY(@NonNull Intent intent) {
+        return intent.getIntExtra(EXTRA_OUTPUT_CROP_OFFSET_Y, -1);
+    }
+
 
     /**
      * Retrieve cropped image aspect ratio from the result Intent

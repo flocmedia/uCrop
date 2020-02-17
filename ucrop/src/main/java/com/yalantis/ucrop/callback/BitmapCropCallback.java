@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 public interface BitmapCropCallback {
     // NOTE(kleyow): Code deviating for editor purposes.
-    void onBitmapCropped(@NonNull Uri resultUri, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect, Matrix mTempMatrix);
+    void onBitmapCropped(@NonNull Uri resultUri, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect, int cropOffsetX, int cropOffsetY);
 
     void onCropFailure(@NonNull Throwable t);
 

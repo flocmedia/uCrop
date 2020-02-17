@@ -51,7 +51,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
     private final BitmapCropCallback mCropCallback;
 
     private int mCroppedImageWidth, mCroppedImageHeight;
-    private Matrix mMatrix;
+    private int cropOffsetX, cropOffsetY;
 
     public BitmapCropTask(@Nullable Bitmap viewBitmap, @NonNull ImageState imageState, @NonNull CropParameters cropParameters,
                           @Nullable Matrix mTempMatrix,
@@ -133,6 +133,9 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
     private boolean crop(float resizeScale) throws IOException {
         ExifInterface originalExif = new ExifInterface(mImageInputPath);
 
+        cropOffsetX = Math.round((mCropRect.left - mCurrentImageRect.left) / mCurrentScale);
+        cropOffsetY = Math.round((mCropRect.top - mCurrentImageRect.top) / mCurrentScale);
+
         int top = Math.round((mCropRect.top - mCurrentImageRect.top) / mCurrentScale);
         int left = Math.round((mCropRect.left - mCurrentImageRect.left) / mCurrentScale);
         mCroppedImageWidth = Math.round(mCropRect.width() / mCurrentScale);
@@ -194,7 +197,8 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
                         mCurrentAngle,
                         mCropRect,
                         mCurrentImageRect,
-                        mMatrix);
+                        cropOffsetX,
+                        cropOffsetY);
             } else {
                 mCropCallback.onCropFailure(t);
             }
