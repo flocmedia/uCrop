@@ -615,8 +615,8 @@ public class UCropActivity extends AppCompatActivity {
         mGestureCropImageView.cropAndSaveImage(mCompressFormat, mCompressQuality, new BitmapCropCallback() {
             // NOTE(kleyow): Code deviating for editor purposes.
             @Override
-            public void onBitmapCropped(@NonNull Uri resultUri, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect) {
-                setResultUri(resultUri, mGestureCropImageView.getTargetAspectRatio(), imageWidth, imageHeight, currentScale, currentAngle, cropRect, currentImageRect);
+            public void onBitmapCropped(@NonNull Uri resultUri, int imageWidth, int imageHeight, float currentScale, float currentAngle, RectF cropRect, RectF currentImageRect, Matrix mTempMatrix) {
+                setResultUri(resultUri, mGestureCropImageView.getTargetAspectRatio(), imageWidth, imageHeight, currentScale, currentAngle, cropRect, currentImageRect, mTempMatrix);
                 finish();
             }
 
