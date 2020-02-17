@@ -249,6 +249,15 @@ public class UCrop {
     }
 
     /**
+     * Retrieve the matrix
+     *
+     * @param intent crop result intent
+     */
+    public static float[] getOutputMatrix(@NonNull Intent intent) {
+        return intent.getFloatArrayExtra(EXTRA_OUTPUT_MATRIX);
+    }
+
+    /**
      * Retrieve cropped image aspect ratio from the result Intent
      *
      * @param intent crop result intent
