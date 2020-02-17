@@ -51,7 +51,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
     private final BitmapCropCallback mCropCallback;
 
     private int mCroppedImageWidth, mCroppedImageHeight;
-    private Matrix mTempMatrix;
+    private Matrix mMatrix;
 
     public BitmapCropTask(@Nullable Bitmap viewBitmap, @NonNull ImageState imageState, @NonNull CropParameters cropParameters,
                           @Nullable Matrix mTempMatrix,
@@ -74,7 +74,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
         mExifInfo = cropParameters.getExifInfo();
 
         mCropCallback = cropCallback;
-        mTempMatrix = mTempMatrix;
+        mMatrix = mTempMatrix;
     }
 
     @Override
@@ -194,7 +194,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
                         mCurrentAngle,
                         mCropRect,
                         mCurrentImageRect,
-                        mTempMatrix);
+                        mMatrix);
             } else {
                 mCropCallback.onCropFailure(t);
             }
